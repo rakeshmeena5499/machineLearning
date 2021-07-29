@@ -5,11 +5,11 @@ If we add up all of these squared differences and take the square root, we’ve 
 '''
 
 def euclidean_distance(pt1, pt2):
-  distance = 0
-  for i in range(len(pt1)):
-    distance += (pt1[i]-pt2[i])**2
-  distance = distance**0.5
-  return distance
+    distance = 0
+    for i in range(len(pt1)):
+        distance += (pt1[i]-pt2[i])**2
+    distance = distance**0.5
+    return distance
 
 print(euclidean_distance([5, 4, 3], [1, 7, 9]))
 
@@ -22,10 +22,10 @@ because it’s similar to how you might navigate when walking city blocks.
 '''
 
 def manhattan_distance(pt1, pt2):
-  distance = 0
-  for i in range(len(pt1)):
-    distance += abs(pt1[i]-pt2[i])
-  return distance
+    distance = 0
+    for i in range(len(pt1)):
+        distance += abs(pt1[i]-pt2[i])
+    return distance
 
 print(manhattan_distance([1, 2], [4, 0]))
 
@@ -33,16 +33,16 @@ print(manhattan_distance([1, 2], [4, 0]))
 '''
 #Hamming Distance
 Hamming distance only cares about whether the dimensions are exactly equal. When finding the Hamming distance between two points,
-add one for every dimension that has different values. Hamming distance is used in spell checking algorithms. For example, 
+add one for every dimension that has different values. Hamming distance is used in spell checking algorithms. For example,
 the Hamming distance between the word “there” and the typo “thete” is one.
 '''
 
 def hamming_distance(pt1, pt2):
-  distance = 0
-  for i in range(len(pt2)):
-    if(pt1[i]!=pt2[i]):
-      distance+=1
-  return distance
+    distance = 0
+    for i in range(len(pt2)):
+        if(pt1[i]!=pt2[i]):
+            distance+=1
+    return distance
 
 print(hamming_distance([1,2], [1, 100]))
 

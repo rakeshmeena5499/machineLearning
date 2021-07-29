@@ -23,13 +23,13 @@ k_list = [i for i in range(1, 101)]
 accuracies = []
 
 for k in range(1, 101):
-  classifier = KNeighborsClassifier(n_neighbors = k)
-  classifier.fit(training_data, training_labels)
-  curr = classifier.score(validation_data, validation_labels)
-  accuracies.append(curr)
-  if(curr>=best):
-    best = curr
-    best_k = k
+    classifier = KNeighborsClassifier(n_neighbors = k)
+    classifier.fit(training_data, training_labels)
+    curr = classifier.score(validation_data, validation_labels)
+    accuracies.append(curr)
+    if(curr>=best):
+        best = curr
+        best_k = k
 
 #print(best, best_k)
 

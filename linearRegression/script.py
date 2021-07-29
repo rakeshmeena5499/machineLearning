@@ -1,24 +1,24 @@
 import matplotlib.pyplot as plt
 
 def get_gradient_at_b(x, y, b, m):
-  N = len(x)
-  diff = 0
-  for i in range(N):
-    x_val = x[i]
-    y_val = y[i]
-    diff += (y_val - ((m * x_val) + b))
-  b_gradient = -(2/N) * diff  
-  return b_gradient
+    N = len(x)
+    diff = 0
+    for i in range(N):
+        x_val = x[i]
+        y_val = y[i]
+        diff += (y_val - ((m * x_val) + b))
+    b_gradient = -(2/N) * diff
+    return b_gradient
 
 def get_gradient_at_m(x, y, b, m):
-  N = len(x)
-  diff = 0
-  for i in range(N):
-      x_val = x[i]
-      y_val = y[i]
-      diff += x_val * (y_val - ((m * x_val) + b))
-  m_gradient = -(2/N) * diff  
-  return m_gradient
+    N = len(x)
+    diff = 0
+    for i in range(N):
+        x_val = x[i]
+        y_val = y[i]
+        diff += x_val * (y_val - ((m * x_val) + b))
+    m_gradient = -(2/N) * diff
+    return m_gradient
 
 def step_gradient(b_current, m_current, x, y, learning_rate):
     b_gradient = get_gradient_at_b(x, y, b_current, m_current)
@@ -26,12 +26,12 @@ def step_gradient(b_current, m_current, x, y, learning_rate):
     b = b_current - (learning_rate * b_gradient)
     m = m_current - (learning_rate * m_gradient)
     return [b, m]
-   
+
 def gradient_descent(x, y, learning_rate, num_iterations):
-  b, m = 0, 0
-  for i in range(num_iterations):
-    b, m = step_gradient(b, m, x, y, learning_rate)
-  return b, m
+    b, m = 0, 0
+    for i in range(num_iterations):
+        b, m = step_gradient(b, m, x, y, learning_rate)
+    return b, m
 
 
 months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]

@@ -26,7 +26,7 @@ fig = plt.figure(figsize=(8, 3))
 fig.suptitle('Cluser Center Images', fontsize=14, fontweight='bold')
 
 for i in range(10):
-  ax = fig.add_subplot(2, 5, 1 + i)
-  ax.imshow(model.cluster_centers_[i].reshape((8, 8)), cmap=plt.cm.binary)
+    ax = fig.add_subplot(2, 5, 1 + i)
+    ax.imshow(model.cluster_centers_[i].reshape((8, 8)), cmap=plt.cm.binary)
 
 plt.show()

@@ -7,18 +7,18 @@ coefficients and feature values and add the intercept, but instead of the predic
 The odds tell us how many more times likely an event is to occur than not occur. If a student will pass the exam with probability 0.7,
 they will fail with probability 0.3.We can then calculate the odds of passing as:
 
-		Odds of passing = 0.7/0.3=2.33
+                Odds of passing = 0.7/0.3=2.33
 
 The log-odds are then understood as the logarithm of the odds!
 
-		log(2.33) = 0.847
+                log(2.33) = 0.847
 '''
 
 import numpy as np
 from exam import hours_studied, calculated_coefficients, intercept
 
 def log_odds(features, coefficients, intercept):
-  return np.dot(features, coefficients)+intercept  #np.dot is used to find dot product of two matrix
+    return np.dot(features, coefficients)+intercept  #np.dot is used to find dot product of two matrix
 
 print(log_odds(hours_studied, calculated_coefficients, intercept))
 
@@ -29,7 +29,7 @@ print(log_odds(hours_studied, calculated_coefficients, intercept))
 The Sigmoid Function is a special case of the more general Logistic Function, where Logistic Regression gets its name.
 By plugging the log-odds into the Sigmoid Function, we map the log-odds to the range [0,1].
 
-		h(z) = 1/(1+e^(-z))
+                h(z) = 1/(1+e^(-z))
 
 e^(-z) can be written in numpy as np.exp(-z)
 '''
@@ -40,8 +40,8 @@ import numpy as np
 from exam import calculated_log_odds
 
 def sigmoid(z):
-  denominator = 1+np.exp(-z)
-  return 1/denominator
+    denominator = 1+np.exp(-z)
+    return 1/denominator
 
 print(sigmoid(calculated_log_odds))
 
@@ -56,9 +56,9 @@ is the negative class.
 '''
 
 def predict_class(features, coefficients, intercept, threshold):
-  calculated_log_odds = log_odds(features, coefficients, intercept)
-  probabilities = sigmoid(calculated_log_odds)
-  return np.where(probabilities >= threshold, 1, 0)
+    calculated_log_odds = log_odds(features, coefficients, intercept)
+    probabilities = sigmoid(calculated_log_odds)
+    return np.where(probabilities >= threshold, 1, 0)
 
 
 
@@ -71,7 +71,7 @@ While usign sklearn's Logistic Regression model we need to keep in mind that it 
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from exam import hours_studied_scaled, passed_exam, exam_features_scaled_train,
-				exam_features_scaled_test, passed_exam_2_train, passed_exam_2_test, guessed_hours_scaled
+    exam_features_scaled_test, passed_exam_2_train, passed_exam_2_test, guessed_hours_scaled
 
 model = LogisticRegression()
 model.fit(hours_studied_scaled, passed_exam)
