@@ -1,3 +1,3 @@
 # machineLearning
 
-Building different machine learning algorithms from scracth
+Implementing basic machine learning algorithms from scracth to understand the working.
