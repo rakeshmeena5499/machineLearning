@@ -11,6 +11,7 @@ we no longer need to think about how our opponent would react if we reached this
 
 from tic_tac_toe import *
 from copy import deepcopy
+import random
 
 start_board = [
         ["1", "2", "3"],
@@ -50,14 +51,17 @@ def evaluate_board(board):
 def minimax(input_board, is_maximizing):
     if game_is_over(input_board):
         return [evaluate_board(input_board), ""]
-    best_move = ""
+    
+    moves = available_moves(input_board)
+    random.shuffle(moves)
+    best_move = moves[0]
     if is_maximizing == True:
         best_value = -float("Inf")
         symbol = "X"
     else:
         best_value = float("Inf")
         symbol = "O"
-    for move in available_moves(input_board):
+    for move in moves:
         new_board = deepcopy(input_board)
         select_space(new_board, move, symbol)
         hypothetical_value = minimax(new_board, not is_maximizing)[0]
@@ -70,7 +74,7 @@ def minimax(input_board, is_maximizing):
     return [best_value, best_move]
 
 
-#AI vs AI Game
+#Play Game
 
 my_board = [
         ["1", "2", "3"],
@@ -78,14 +82,23 @@ my_board = [
         ["7", "8", "9"]
 ]
 
-while not game_is_over(my_board):
-    select_space(my_board, minimax(my_board, True)[1], "X")
-    print_board(my_board)
-    if not game_is_over(my_board):
-        choice = input("Select a move:\n")
-        try:
-            move = int(choice)
-        except ValueError:
-            print("Wrong choice!")
-        select_space(my_board, move, "O")
+def play_game(my_board):
+    while not game_is_over(my_board):
+        select_space(my_board, minimax(my_board, True)[1], "X")
         print_board(my_board)
+        if not game_is_over(my_board):
+            choice = input("Select a move:\n")
+            try:
+                move = int(choice)
+            except ValueError:
+                print("Wrong choice!")
+            select_space(my_board, move, "O")
+            print_board(my_board)
+    if has_won(my_board, "X"):
+        print("X won!")
+    elif has_won(my_board, "O"):
+        print("O won!")
+    else:
+        print("It's a tie!")
+
+play_game(my_board)

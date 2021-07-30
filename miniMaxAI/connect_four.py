@@ -193,19 +193,9 @@ def evaluate_board(board):
     elif has_won(board, "O"):
         return -float("Inf")
     else:
-        num_top_x = 0
-        num_top_o = 0
-
-        for col in board:
-            for square in col:
-                if square == "X":
-                    num_top_x += 1
-                    break
-                elif square == "O":
-                    num_top_o += 1
-                    break
-
-        return num_top_x - num_top_o
+        x_streaks = count_streaks(board, "X")
+        o_streaks = count_streaks(board, "O")
+        return x_streaks - o_streaks
 
 def minimax(input_board, is_maximizing, depth, alpha, beta):
     if game_is_over(input_board) or depth == 0:
@@ -260,13 +250,14 @@ def play_game():
         print( "Your Turn\nUser selected ", move)
         select_space(my_board, move, "X")
         print_board(my_board)
-
         if not game_is_over(my_board):
             #Change the third parameter for the computer's "intelligence"
-            result = minimax(my_board, True, 3, -float("Inf"), float("Inf"))
+            result = minimax(my_board, False, 6, -float("Inf"), float("Inf"))
             print( "Computer's Turn\nComputer selected ", result[1])
             select_space(my_board, result[1], "O")
             print_board(my_board)
+
+
     if has_won(my_board, "X"):
         print("You won!")
     elif has_won(my_board, "O"):
@@ -274,7 +265,7 @@ def play_game():
     else:
         print("It's a tie!")
 
-play_game()
+#play_game()
 
 
 #Testing Computer's Game
@@ -285,7 +276,7 @@ def ai_vs_ai():
     o_count = 0
     while not game_is_over(my_board):
         #Change the third parameter for the computer's "intelligence"
-        result = minimax(my_board, True, 10, -float("Inf"), float("Inf"))
+        result = minimax(my_board, True, 8, -float("Inf"), float("Inf"))
         print( "X Turn\nX selected ", result[1])
         x_count += 1
         select_space(my_board, result[1], "X")
@@ -293,7 +284,7 @@ def ai_vs_ai():
 
         if not game_is_over(my_board):
         #Change the third parameter for the computer's "intelligence"
-            result = minimax(my_board, True, 1, -float("Inf"), float("Inf"))
+            result = minimax(my_board, False, 8, -float("Inf"), float("Inf"))
             print( "O Turn\nO selected ", result[1])
             o_count += 1
             select_space(my_board, result[1], "O")
@@ -305,4 +296,4 @@ def ai_vs_ai():
     else:
         print("It's a tie!")
 
-#ai_vs_ai()
+ai_vs_ai()
