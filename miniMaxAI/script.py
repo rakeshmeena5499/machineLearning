@@ -11,7 +11,7 @@ we no longer need to think about how our opponent would react if we reached this
 
 from tic_tac_toe import *
 from copy import deepcopy
-import random
+import secrets
 
 start_board = [
         ["1", "2", "3"],
@@ -53,7 +53,7 @@ def minimax(input_board, is_maximizing):
         return [evaluate_board(input_board), ""]
     
     moves = available_moves(input_board)
-    random.shuffle(moves)
+    secrets.SystemRandom().shuffle(moves)
     best_move = moves[0]
     if is_maximizing == True:
         best_value = -float("Inf")

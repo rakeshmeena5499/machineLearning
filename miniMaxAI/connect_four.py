@@ -1,6 +1,7 @@
 from copy import deepcopy
-import random
-random.seed(108)
+import secrets
+
+secrets.SystemRandom().seed(108)
 
 def print_board(board):
     print()
@@ -203,7 +204,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta):
     if is_maximizing:
         best_value = -float("Inf")
         moves = available_moves(input_board)
-        random.shuffle(moves)
+        secrets.SystemRandom().shuffle(moves)
         best_move = moves[0]
         for move in moves:
             new_board = deepcopy(input_board)
@@ -219,7 +220,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta):
     else:
         best_value = float("Inf")
         moves = available_moves(input_board)
-        random.shuffle(moves)
+        secrets.SystemRandom().shuffle(moves)
         best_move = moves[0]
         for move in moves:
             new_board = deepcopy(input_board)
